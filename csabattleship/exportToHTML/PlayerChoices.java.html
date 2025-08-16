@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>PlayerChoices.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PlayerChoices.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">PlayerChoices </span><span class="s0">extends <a href="Grid.java.html">Grid</a> </span><span class="s2">{</span>
+    <span class="s0">public void </span><span class="s1">display</span><span class="s2">(</span><span class="s0">int </span><span class="s1">hits</span><span class="s2">) {</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;You have scored &quot; </span><span class="s2">+ </span><span class="s1">hits </span><span class="s2">+ </span><span class="s3">&quot; hits so far.&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;  1 2 3 4 5 6 7 8 9 10&quot;</span><span class="s2">);</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">GRID_SIZE</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s1">i</span><span class="s2">+</span><span class="s4">1 </span><span class="s2">+ </span><span class="s3">&quot; &quot;</span><span class="s2">);</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">j </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">j </span><span class="s2">&lt; </span><span class="s1">GRID_SIZE</span><span class="s2">; </span><span class="s1">j</span><span class="s2">++) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] + </span><span class="s3">&quot; &quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+    <span class="s2">}</span>
+    <span class="s0">public </span><span class="s1">PlayerChoices</span><span class="s2">() {</span>
+        <span class="s0">super</span><span class="s2">();</span>
+    <span class="s2">}</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">chooseShip</span><span class="s2">() {};</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">shipLocation</span><span class="s2">(</span><span class="s0">int </span><span class="s1">size</span><span class="s2">) {};</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

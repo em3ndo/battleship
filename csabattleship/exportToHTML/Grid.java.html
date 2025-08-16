@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>Grid.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Grid.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileNotFoundException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+
+<span class="s0">public abstract class </span><span class="s1">Grid </span><span class="s2">{</span>
+    <span class="s0">public static final int </span><span class="s1">GRID_SIZE </span><span class="s2">= </span><span class="s3">10</span><span class="s2">;</span>
+    <span class="s0">protected char</span><span class="s2">[][] </span><span class="s1">grid</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">Grid</span><span class="s2">() {</span>
+        <span class="s1">grid </span><span class="s2">= </span><span class="s0">new char</span><span class="s2">[</span><span class="s1">GRID_SIZE</span><span class="s2">][</span><span class="s1">GRID_SIZE</span><span class="s2">];</span>
+        <span class="s1">initializeGrid</span><span class="s2">();</span>
+    <span class="s2">}</span>
+    <span class="s0">public abstract void </span><span class="s1">chooseShip</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">IOException</span><span class="s2">;</span>
+    <span class="s0">public abstract void </span><span class="s1">shipLocation</span><span class="s2">(</span><span class="s0">int </span><span class="s1">size</span><span class="s2">);</span>
+    <span class="s0">private void </span><span class="s1">initializeGrid</span><span class="s2">() {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">GRID_SIZE</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">j </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">j </span><span class="s2">&lt; </span><span class="s1">GRID_SIZE</span><span class="s2">; </span><span class="s1">j</span><span class="s2">++) {</span>
+                <span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] = </span><span class="s4">'-'</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">display</span><span class="s2">() {</span>
+
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;  1 2 3 4 5 6 7 8 9 10&quot;</span><span class="s2">);</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">GRID_SIZE</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s1">i</span><span class="s2">+</span><span class="s3">1 </span><span class="s2">+ </span><span class="s4">&quot; &quot;</span><span class="s2">);</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">j </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">j </span><span class="s2">&lt; </span><span class="s1">GRID_SIZE</span><span class="s2">; </span><span class="s1">j</span><span class="s2">++) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] + </span><span class="s4">&quot; &quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">isValidPlacement</span><span class="s2">(</span><span class="s0">int </span><span class="s1">row</span><span class="s2">, </span><span class="s0">int </span><span class="s1">col</span><span class="s2">, </span><span class="s0">int </span><span class="s1">size</span><span class="s2">, </span><span class="s0">char </span><span class="s1">direction</span><span class="s2">) {</span>
+        <span class="s0">if</span><span class="s2">(</span><span class="s1">row </span><span class="s2">&gt; </span><span class="s3">9 </span><span class="s2">|| </span><span class="s1">row </span><span class="s2">&lt; </span><span class="s3">0 </span><span class="s2">|| </span><span class="s1">col </span><span class="s2">&gt; </span><span class="s3">9 </span><span class="s2">|| </span><span class="s1">col </span><span class="s2">&lt; </span><span class="s3">0</span><span class="s2">)</span>
+            <span class="s0">return false</span><span class="s2">;</span>
+        <span class="s0">if</span><span class="s2">(</span><span class="s1">direction </span><span class="s2">!= </span><span class="s4">'v' </span><span class="s2">&amp;&amp; </span><span class="s1">direction </span><span class="s2">!= </span><span class="s4">'h'</span><span class="s2">)</span>
+            <span class="s0">return false</span><span class="s2">;</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">direction </span><span class="s2">== </span><span class="s4">'v'</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">row </span><span class="s2">+ </span><span class="s1">size </span><span class="s2">&gt; </span><span class="s1">GRID_SIZE</span><span class="s2">) {</span>
+                <span class="s0">return false</span><span class="s2">;  </span><span class="s5">// Ship would leak beyond grid</span>
+            <span class="s2">}</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s1">row</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">row </span><span class="s2">+ </span><span class="s1">size</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">col</span><span class="s2">] == </span><span class="s4">'S'</span><span class="s2">) {</span>
+                    <span class="s0">return false</span><span class="s2">;  </span><span class="s5">// Ship overlaps with existing ship</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">col </span><span class="s2">+ </span><span class="s1">size </span><span class="s2">&gt; </span><span class="s1">GRID_SIZE</span><span class="s2">) {</span>
+                <span class="s0">return false</span><span class="s2">;  </span><span class="s5">// Ship would leak beyond grid</span>
+            <span class="s2">}</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s1">col</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">col </span><span class="s2">+ </span><span class="s1">size</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">row</span><span class="s2">][</span><span class="s1">i</span><span class="s2">] == </span><span class="s4">'S'</span><span class="s2">) {</span>
+                    <span class="s0">return false</span><span class="s2">;  </span><span class="s5">// Ship overlaps with existing ship</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">return true</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">placeShip</span><span class="s2">(</span><span class="s0">int </span><span class="s1">row</span><span class="s2">, </span><span class="s0">int </span><span class="s1">col</span><span class="s2">, </span><span class="s0">int </span><span class="s1">size</span><span class="s2">, </span><span class="s0">char </span><span class="s1">direction</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">direction </span><span class="s2">== </span><span class="s4">'v'</span><span class="s2">) {</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">size</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+                <span class="s1">grid</span><span class="s2">[</span><span class="s1">row </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">][</span><span class="s1">col</span><span class="s2">] = </span><span class="s4">'S'</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">size</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+                <span class="s1">grid</span><span class="s2">[</span><span class="s1">row</span><span class="s2">][</span><span class="s1">col </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">] = </span><span class="s4">'S'</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">validFire</span><span class="s2">(</span><span class="s0">int </span><span class="s1">row</span><span class="s2">, </span><span class="s0">int </span><span class="s1">col</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">row </span><span class="s2">&lt; </span><span class="s3">0 </span><span class="s2">|| </span><span class="s1">row </span><span class="s2">&gt;= </span><span class="s1">GRID_SIZE </span><span class="s2">|| </span><span class="s1">col </span><span class="s2">&lt; </span><span class="s3">0 </span><span class="s2">|| </span><span class="s1">col </span><span class="s2">&gt;= </span><span class="s1">GRID_SIZE </span><span class="s2">|| </span><span class="s1">grid</span><span class="s2">[</span><span class="s1">row</span><span class="s2">][</span><span class="s1">col</span><span class="s2">] == </span><span class="s4">'X' </span><span class="s2">|| </span><span class="s1">grid</span><span class="s2">[</span><span class="s1">row</span><span class="s2">][</span><span class="s1">col</span><span class="s2">] == </span><span class="s4">'O'</span><span class="s2">;</span>
+    <span class="s2">}</span>
+    <span class="s0">public boolean </span><span class="s1">hit</span><span class="s2">(</span><span class="s0">int </span><span class="s1">row</span><span class="s2">, </span><span class="s0">int </span><span class="s1">col</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">row</span><span class="s2">][</span><span class="s1">col</span><span class="s2">] == </span><span class="s4">'S'</span><span class="s2">) {</span>
+            <span class="s1">grid</span><span class="s2">[</span><span class="s1">row</span><span class="s2">][</span><span class="s1">col</span><span class="s2">] = </span><span class="s4">'X'</span><span class="s2">;</span>
+            <span class="s0">return true</span><span class="s2">;</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">grid</span><span class="s2">[</span><span class="s1">row</span><span class="s2">][</span><span class="s1">col</span><span class="s2">] = </span><span class="s4">'O'</span><span class="s2">;</span>
+            <span class="s0">return false</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">isShipEliminated</span><span class="s2">(</span><span class="s0">int </span><span class="s1">i</span><span class="s2">, </span><span class="s0">int </span><span class="s1">j</span><span class="s2">) {</span>
+        <span class="s0">int </span><span class="s1">a </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+        <span class="s0">int </span><span class="s1">b </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] == </span><span class="s4">'X'</span><span class="s2">) {</span>
+            <span class="s0">while</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">+</span><span class="s1">a</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] != </span><span class="s4">'-' </span><span class="s2">&amp;&amp; </span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">+</span><span class="s1">a</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] != </span><span class="s4">'O' </span><span class="s2">&amp;&amp; </span><span class="s1">i</span><span class="s2">+</span><span class="s1">a</span><span class="s2">&lt;</span><span class="s3">9</span><span class="s2">) {</span>
+                <span class="s1">a</span><span class="s2">++;</span>
+                <span class="s0">if</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">+</span><span class="s1">a</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] == </span><span class="s4">'S'</span><span class="s2">)</span>
+                    <span class="s0">return false</span><span class="s2">;</span>
+            <span class="s2">}</span>
+            <span class="s1">a</span><span class="s2">=</span><span class="s3">0</span><span class="s2">;</span>
+            <span class="s0">while</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">+</span><span class="s1">a</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] != </span><span class="s4">'-' </span><span class="s2">&amp;&amp; </span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">+</span><span class="s1">a</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] != </span><span class="s4">'O' </span><span class="s2">&amp;&amp; </span><span class="s1">i</span><span class="s2">+</span><span class="s1">a</span><span class="s2">&gt;</span><span class="s3">0</span><span class="s2">) {</span>
+                <span class="s1">a</span><span class="s2">--;</span>
+                <span class="s0">if</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">+</span><span class="s1">a</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] == </span><span class="s4">'S'</span><span class="s2">)</span>
+                    <span class="s0">return false</span><span class="s2">;</span>
+            <span class="s2">}</span>
+            <span class="s0">while</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">+</span><span class="s1">b</span><span class="s2">] != </span><span class="s4">'-' </span><span class="s2">&amp;&amp; </span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">+</span><span class="s1">b</span><span class="s2">] != </span><span class="s4">'O' </span><span class="s2">&amp;&amp; </span><span class="s1">j</span><span class="s2">+</span><span class="s1">b</span><span class="s2">&lt;</span><span class="s3">9</span><span class="s2">) {</span>
+                <span class="s1">b</span><span class="s2">++;</span>
+                <span class="s0">if</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">+</span><span class="s1">b</span><span class="s2">] == </span><span class="s4">'S'</span><span class="s2">)</span>
+                    <span class="s0">return false</span><span class="s2">;</span>
+            <span class="s2">}</span>
+            <span class="s1">b</span><span class="s2">=</span><span class="s3">0</span><span class="s2">;</span>
+            <span class="s0">while</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">+</span><span class="s1">b</span><span class="s2">] != </span><span class="s4">'-' </span><span class="s2">&amp;&amp; </span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">+</span><span class="s1">b</span><span class="s2">] != </span><span class="s4">'O' </span><span class="s2">&amp;&amp; </span><span class="s1">j</span><span class="s2">+</span><span class="s1">b</span><span class="s2">&gt;</span><span class="s3">0</span><span class="s2">) {</span>
+                <span class="s1">b</span><span class="s2">--;</span>
+                <span class="s0">if</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">+</span><span class="s1">b</span><span class="s2">] == </span><span class="s4">'S'</span><span class="s2">)</span>
+                    <span class="s0">return false</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">return true</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,9 @@
+
+The basic object of the game of Battleship is to hide your five ship fleet somewhere on your ocean and by calling out
+basic coordinates, find your opponent's fleet before they find yours. There may be variations in the specific rules
+depending on the version being played.
+
+The ships can be placed horizontally or vertically, but not diagonally. The ships can be of different sizes, with the
+largest being 5 squares long. A player calls out a coordinate on the grid (like "row 5, column 5"), and the java console
+announces whether it is a hit or miss. The game ends when one player has sunk all of their opponent's ships. Players
+must keep track of their own and their opponent's shots on a separate record grid.

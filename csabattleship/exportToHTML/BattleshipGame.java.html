@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>BattleshipGame.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #7a7e85;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+BattleshipGame.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">BufferedReader</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileReader</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.*;</span>
+<span class="s0">public class </span><span class="s1">BattleshipGame </span><span class="s2">{</span>
+    <span class="s0">public static final int</span><span class="s2">[] </span><span class="s1">SHIP_SIZES </span><span class="s2">= {</span><span class="s3">4</span><span class="s2">, </span><span class="s3">3</span><span class="s2">, </span><span class="s3">3</span><span class="s2">, </span><span class="s3">2</span><span class="s2">, </span><span class="s3">2</span><span class="s2">};</span>
+
+    <span class="s0">private final <a href="HumanPlayer.java.html">HumanPlayer</a> </span><span class="s1">humanplayer</span><span class="s2">;</span>
+    <span class="s0">private final <a href="AIPlayer.java.html">AIPlayer</a> </span><span class="s1">aiPlayer</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">BattleshipGame</span><span class="s2">() {</span>
+        <span class="s1">humanplayer </span><span class="s2">= </span><span class="s0">new <a href="HumanPlayer.java.html">HumanPlayer</a></span><span class="s2">();</span>
+        <span class="s1">aiPlayer </span><span class="s2">= </span><span class="s0">new <a href="AIPlayer.java.html">AIPlayer</a></span><span class="s2">();</span>
+    <span class="s2">}</span>
+    <span class="s0">public void </span><span class="s1">playGame</span><span class="s2">() {</span>
+        <span class="s4">//Start the game</span>
+        <span class="s0">boolean </span><span class="s1">playerTurn </span><span class="s2">= </span><span class="s0">true</span><span class="s2">;</span>
+        <span class="s0">while </span><span class="s2">(</span><span class="s0">true</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">playerTurn</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Your Turn:&quot;</span><span class="s2">);</span>
+                <span class="s4">//Show an empty grid; the player chooses ship coordinates here</span>
+                <span class="s1">humanplayer</span><span class="s2">.</span><span class="s1">getGrid</span><span class="s2">().</span><span class="s1">display</span><span class="s2">();</span>
+                <span class="s4">//After the player places their ships, the human player fires the first shot; they will alternate turns</span>
+                <span class="s4">//with the AI</span>
+                <span class="s1">humanplayer</span><span class="s2">.</span><span class="s1">fire</span><span class="s2">(</span><span class="s1">aiPlayer</span><span class="s2">.</span><span class="s1">getGrid</span><span class="s2">());</span>
+                <span class="s4">//Display every shot so far, on an empty grid with no AI ship positions, as a hit or miss (X or 0)</span>
+                <span class="s1">humanplayer</span><span class="s2">.</span><span class="s1">getPlayerChoices</span><span class="s2">().</span><span class="s1">display</span><span class="s2">(</span><span class="s1">humanplayer</span><span class="s2">.</span><span class="s1">getHitCount</span><span class="s2">());</span>
+                <span class="s4">//See if all AI ships are destroyed or not</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">checkGameOver</span><span class="s2">(</span><span class="s1">aiPlayer</span><span class="s2">.</span><span class="s1">getGrid</span><span class="s2">())) {</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Congratulations! You win!&quot;</span><span class="s2">);</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s2">}</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;AI's Turn:&quot;</span><span class="s2">);</span>
+                <span class="s4">//AI fires the first shot</span>
+                <span class="s1">aiPlayer</span><span class="s2">.</span><span class="s1">fire</span><span class="s2">(</span><span class="s1">humanplayer</span><span class="s2">.</span><span class="s1">getGrid</span><span class="s2">());</span>
+                <span class="s4">//See if all human ships are destroyed or not</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">checkGameOver</span><span class="s2">(</span><span class="s1">humanplayer</span><span class="s2">.</span><span class="s1">getGrid</span><span class="s2">())) {</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Sorry, you lose. Better luck next time!&quot;</span><span class="s2">);</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+            <span class="s1">playerTurn </span><span class="s2">= !</span><span class="s1">playerTurn</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s4">//End the game if either player wins</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Game Over!&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s4">//Check if the AI or human grid has any ship coordinates still alive, denoted as an S</span>
+    <span class="s0">private boolean </span><span class="s1">checkGameOver</span><span class="s2">(<a href="Grid.java.html">Grid</a> </span><span class="s1">grid</span><span class="s2">) {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">grid</span><span class="s2">.</span><span class="s1">grid</span><span class="s2">.</span><span class="s1">length</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">j </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">j </span><span class="s2">&lt; </span><span class="s1">grid</span><span class="s2">.</span><span class="s1">grid</span><span class="s2">.</span><span class="s1">length</span><span class="s2">; </span><span class="s1">j</span><span class="s2">++) {</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">grid</span><span class="s2">.</span><span class="s1">grid</span><span class="s2">[</span><span class="s1">i</span><span class="s2">][</span><span class="s1">j</span><span class="s2">] == </span><span class="s5">'S'</span><span class="s2">) {</span>
+                    <span class="s0">return false</span><span class="s2">;</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">return true</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s4">//Start a new battleship game</span>
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">IOException </span><span class="s2">{</span>
+        <span class="s1">BattleshipGame game </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BattleshipGame</span><span class="s2">();</span>
+        <span class="s4">//Have the human player choose their ships; have the AI player receive randomly selected ships</span>
+        <span class="s1">game</span><span class="s2">.</span><span class="s1">humanplayer</span><span class="s2">.</span><span class="s1">aiChoices</span><span class="s2">.</span><span class="s1">chooseShip</span><span class="s2">();</span>
+        <span class="s1">game</span><span class="s2">.</span><span class="s1">aiPlayer</span><span class="s2">.</span><span class="s1">aiShips</span><span class="s2">.</span><span class="s1">chooseShip</span><span class="s2">();</span>
+        <span class="s1">game</span><span class="s2">.</span><span class="s1">playGame</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

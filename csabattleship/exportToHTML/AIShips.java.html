@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>AIShips.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AIShips.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">AIShips </span><span class="s0">extends <a href="Grid.java.html">Grid</a> </span><span class="s2">{</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">chooseShip</span><span class="s2">() {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">size </span><span class="s2">: <a href="BattleshipGame.java.html">BattleshipGame</a>.</span><span class="s1">SHIP_SIZES</span><span class="s2">) {</span>
+            <span class="s1">shipLocation</span><span class="s2">(</span><span class="s1">size</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">shipLocation</span><span class="s2">(</span><span class="s0">int </span><span class="s1">size</span><span class="s2">) {</span>
+        <span class="s0">int </span><span class="s1">row</span><span class="s2">, </span><span class="s1">col</span><span class="s2">;</span>
+        <span class="s0">char </span><span class="s1">direction</span><span class="s2">;</span>
+        <span class="s0">do </span><span class="s2">{</span>
+            <span class="s1">row </span><span class="s2">= (</span><span class="s0">int</span><span class="s2">) (</span><span class="s1">Math</span><span class="s2">.</span><span class="s1">random</span><span class="s2">() * <a href="Player.java.html">Player</a>.</span><span class="s1">aiShips</span><span class="s2">.</span><span class="s1">grid</span><span class="s2">.</span><span class="s1">length</span><span class="s2">);</span>
+            <span class="s1">col </span><span class="s2">= (</span><span class="s0">int</span><span class="s2">) (</span><span class="s1">Math</span><span class="s2">.</span><span class="s1">random</span><span class="s2">() * <a href="Player.java.html">Player</a>.</span><span class="s1">aiShips</span><span class="s2">.</span><span class="s1">grid</span><span class="s2">.</span><span class="s1">length</span><span class="s2">);</span>
+            <span class="s1">direction </span><span class="s2">= (</span><span class="s1">Math</span><span class="s2">.</span><span class="s1">random</span><span class="s2">() &lt; </span><span class="s3">0.5</span><span class="s2">) ? </span><span class="s4">'v' </span><span class="s2">: </span><span class="s4">'h'</span><span class="s2">;</span>
+        <span class="s2">} </span><span class="s0">while </span><span class="s2">(!<a href="Player.java.html">Player</a>.</span><span class="s1">aiShips</span><span class="s2">.</span><span class="s1">isValidPlacement</span><span class="s2">(</span><span class="s1">row</span><span class="s2">, </span><span class="s1">col</span><span class="s2">, </span><span class="s1">size</span><span class="s2">, </span><span class="s1">direction</span><span class="s2">));</span>
+
+        <a href="Player.java.html">Player</a><span class="s2">.</span><span class="s1">aiShips</span><span class="s2">.</span><span class="s1">placeShip</span><span class="s2">(</span><span class="s1">row</span><span class="s2">, </span><span class="s1">col</span><span class="s2">, </span><span class="s1">size</span><span class="s2">, </span><span class="s1">direction</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
